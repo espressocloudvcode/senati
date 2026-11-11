@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#08090d">
+  <meta name="description" content="Interfaz de inicio de sesión SENATI.">
+  <title>Iniciar sesión | SENATI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="page-shell">
+    <div class="ambient ambient-one" aria-hidden="true"></div>
+    <div class="ambient ambient-two" aria-hidden="true"></div>
+
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="SENATI, inicio">
+        <span class="brand-mark">S</span>
+        <span class="brand-name">SENATI<span class="brand-dot">.</span></span>
+      </a>
+      <span class="top-note"><span class="status-dot"></span> Portal de acceso</span>
+    </header>
+
+    <section class="login-layout" aria-labelledby="welcome-title">
+      <div class="intro">
+        <p class="eyebrow"><span></span> ACCESO SEGURO</p>
+        <h1 id="welcome-title">Tu próximo paso<br>empieza <span>aquí.</span></h1>
+        <p class="intro-copy">Ingresa a tu espacio académico y continúa construyendo tu futuro.</p>
+        <div class="intro-line"><span></span><span></span><span></span></div>
+        <p class="intro-foot">APRENDER · CREAR · AVANZAR</p>
+      </div>
+
+      <div class="login-card">
+        <div class="card-heading">
+          <div class="mini-mark">S</div>
+          <p class="eyebrow">BIENVENIDO DE NUEVO</p>
+          <h2>Iniciar sesión</h2>
+          <p class="card-subtitle">Introduce tus datos para continuar.</p>
+        </div>
+
+        <form id="login-form">
+          <label for="email">Correo electrónico</label>
+          <div class="field">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"></rect><path d="m4 7 8 6 8-6"></path></svg>
+            <input id="email" name="email" type="email" placeholder="usuario@ejemplo.com" autocomplete="username" required>
+          </div>
+
+          <div class="password-label">
+            <label for="password">Contraseña</label>
+            <a href="#" id="forgot-link">¿La olvidaste?</a>
+          </div>
+          <div class="field">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="10" width="16" height="11" rx="2"></rect><path d="M8 10V7a4 4 0 0 1 8 0v3"></path></svg>
+            <input id="password" name="password" type="password" placeholder="Ingresa tu contraseña" autocomplete="current-password" required>
+            <button class="toggle-password" type="button" id="toggle-password" aria-label="Mostrar contraseña">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12Z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+            </button>
+          </div>
+
+          <div class="form-options">
+            <label class="remember"><input type="checkbox" name="remember"> <span>Recordarme</span></label>
+          </div>
+
+          <button class="submit-button" type="submit">Entrar <span aria-hidden="true">↗</span></button>
+          <p class="feedback" id="feedback" role="status" aria-live="polite"></p>
+        </form>
+        <div class="card-footer"><span></span> Tu información merece estar protegida <span></span></div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <span>© <span id="year"></span> SENATI · Proyecto académico</span>
+      <span>Diseñado para una experiencia simple y clara.</span>
+    </footer>
+  </main>
+  <script>
+    const password = document.querySelector('#password');
+    const toggle = document.querySelector('#toggle-password');
+    const feedback = document.querySelector('#feedback');
+
+    toggle.addEventListener('click', () => {
+      const visible = password.type === 'password';
+      password.type = visible ? 'text' : 'password';
+      toggle.setAttribute('aria-label', visible ? 'Ocultar contraseña' : 'Mostrar contraseña');
+    });
+
+    document.querySelector('#login-form').addEventListener('submit', (event) => {
+      event.preventDefault();
+      feedback.textContent = 'La interfaz está lista. Para validar usuarios, conecta este formulario a un servidor de autenticación.';
+    });
+
+    document.querySelector('#forgot-link').addEventListener('click', (event) => {
+      event.preventDefault();
+      feedback.textContent = 'Solicita el restablecimiento de tu contraseña al administrador del sistema.';
+    });
+
+    document.querySelector('#year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
